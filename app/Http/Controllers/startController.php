@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\users;
+use App\Models\Mongo;
 use Session;
 class startController extends Controller
 {
@@ -17,7 +18,27 @@ class startController extends Controller
 			return view('layouts.admins',array('date'=>Jdate::fn($date['date4'])));
 		}
 		else {
+		  		$client = new \MongoDB\Client("mongodb://localhost:27017");
+				$db = $client->aramestan;
+				$collection = $db->users;
+				/*$doc = array(
+						"name" => "محمد",
+						"family" => "سرایی",
+						"username" => 'admin',
+						"password" => '123456',
+						"mobile" => '09182861738',
+						"role_id" => 0,
+						"email" => 'sarayi@gmail.com',
+						"is_active" => 1,
+						"login" => array( "lastlogin_date " => '1', "lastlogin_time" => '1'),
+					);
+				$collection->insertOne( $doc );/*
+				$update = array( '$set' => array('password' => "147258"));
+				$where = array('username' => 'admin');
+				$collection -> updateOne($where,$update);*/
 		  		return view('layouts.gust');
+				
+				//return view('layouts.gust');
 				
 		}
 		
@@ -30,17 +51,22 @@ class startController extends Controller
 			$msg = 'نام کاربری و رمز عبور صحیح نیست<br /> یا کاربری شما غیر فعال شده';
 		    $username = $_POST['username'];
 			$password = $_POST['password'];
-					$rows = users::where('username', '=', $username)->where('is_active', '=', 1)->limit('1')->get();
+			$db = Mongo::ConDB();
+			$collection = $db->users;
+			$where = array('username'=>$username);
+			$rows = $collection->findOne( $where );
+			
 					if ( count($rows) != 0 ){
-							if ($rows[0]['password'] == $password){
+							if ($rows->password == $password){
 									 session ( [ 
-                   						 'admin' => $rows[0]
+                   						 'admin' => $rows
          							   ] );
 									$date = Jdate::medate();
-									$user = users::find($rows[0]['id']);
-									$user->lastlogin_date = $date['date4'];
-									$user->lastlogin_time = date('G:i:s');
-									$user->save();
+									$id = (string)$rows->_id;
+									$update = array( '$set' => array('login'=>array('lastlogin_date' => $date['date4'],'lastlogin_time' =>  date('G:i:s'))));
+									$where = array('_id' => new \MongoDB\BSON\ObjectID($id));
+									$collection -> updateOne($where,$update);
+									
 									
 									$c_login = true;	
 									$msg     = '';
