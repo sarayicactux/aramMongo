@@ -1,0 +1,643 @@
+/*******************************************************************************
+ *              
+ *      Author: Mehran Ranji (http://mehranranji.ir)
+ *  Created on: 1-1-2017
+ *     Project: Aramestan
+ *     Email: Mehran.ranji@gmail.com
+ *******************************************************************************/
+ @font-face {
+  font-family: 'IRNazanin';
+  font-weight:normal;
+  src: url('../font/IRNazanin.eot?#') format('eot'),  /* IE6–8 */
+       url('../font/IRNazanin.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+       url('../font/IRNazanin.ttf') format('truetype');  /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+}
+@font-face {
+    font-family: 'mitra' ;
+    src: url('../font/BMitra.eot') ;
+    src: url('../font/BMitra.eot?#iefix') format('embedded-opentype'),
+         url('../font/BMitra.woff') format('woff'),
+         url('../font/BMitra.ttf') format('truetype'),
+         url('../font/BMitra.svg#BMitra') format('svg') ;
+    font-weight: normal ;
+    font-style: normal ;
+    unicode-range: U+0600–06FF ;
+}
+@font-face {
+    font-family: "ns";
+    font-style: normal;
+    font-weight: bold;
+    src: url('../font/nassim-bold.eot?') format('eot'), url('../font/nassim-bold.woff') format('woff'),url("../font/nassim-bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'mitra' ;
+    src: url('../font/BMitra.eot') ;
+    src: url('../font/BMitra.eot?#iefix') format('embedded-opentype'),
+         url('../font/BMitra.woff') format('woff'),
+         url('../font/BMitra.ttf') format('truetype'),
+         url('../font/BMitra.svg#BMitra') format('svg') ;
+    font-weight: normal ;
+    font-style: normal ;
+    unicode-range: U+0600–06FF ;
+}
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 500;
+    src: url(../font/IRANSansWeb_Medium.eot);
+    src: url(../font/IRANSansWeb_Medium.eot?#iefix) format("embedded-opentype"), url(../font/IRANSansWeb_Medium.woff2) format("woff2"), url(../font/IRANSansWeb_Medium.woff) format("woff"), url(../font/IRANSansWeb_Medium.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 300;
+    src: url(../font/IRANSansWeb_Light.eot);
+    src: url(../font/IRANSansWeb_Light.eot?#iefix) format("embedded-opentype"), url(../font/IRANSansWeb_Light.woff2) format("woff2"), url(../font/IRANSansWeb_Light.woff) format("woff"), url(../font/IRANSansWeb_Light.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 200;
+    src: url(../font/IRANSansWeb_UltraLight.eot);
+    src: url(../font/IRANSansWeb_UltraLight.eot?#iefix) format("embedded-opentype"), url(../font/IRANSansWeb_UltraLight.woff2) format("woff2"), url(../font/IRANSansWeb_UltraLight.woff) format("woff"), url(../font/IRANSansWeb_UltraLight.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 400;
+    src: url(../font/IRANSansWeb.eot);
+    src: url(../font/IRANSansWeb.eot?#iefix) format("embedded-opentype"), url(../font/IRANSansWeb.woff2) format("woff2"), url(../font/IRANSansWeb.woff) format("woff"), url(../font/IRANSansWeb.ttf) format("truetype");
+}
+#bg {
+		width:100%;
+		height:100%;
+		background:#F2F2F2 ;
+		filter: alpha(opacity=4);
+		-moz-opacity: 0.4;
+		-khtml-opacity: 0.4;
+		opacity: 0.4;
+		position:fixed;
+		top:0px;
+		z-index:2000;
+		display:none;
+		cursor:wait;
+}
+.alerts {
+		font-family:ns,tahoma;
+		color:#FF0000;
+		font-size:16px;
+}
+#alerts {
+		width:30%;
+		top:30%;
+		left:35%;
+		position:fixed;
+		z-index:4003;
+		background:#FFFFFF;
+		border: 2px solid #0099FF;
+        border-radius: 5px 5px 5px 5px;
+		-moz-box-shadow: 0px 0px 10px 4px #000;
+		-webkit-box-shadow: 0px 0px 10px 4px #000;
+		 box-shadow: 0px 0px 10px 4px #000;
+		  /* For IE 8 */
+		-ms-filter: "progid:DX../imageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+		  /* For IE 5.5 - 7 */
+		filter: progid:DX../imageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+		display:none;
+}
+#flayer {
+		width:90%;
+		top:5%;
+		left:5%;
+		height:90%;
+		position:fixed;
+		z-index:4004;
+		background:#E1E1E1;
+        border-radius: 5px 5px 5px 5px;
+		-moz-box-shadow: 5px 5px 6px #000;
+		-webkit-box-shadow: 5px 5px 5px #000;
+		 box-shadow: 5px 5px 5px #000;
+		  /* For IE 8 */
+		-ms-filter: "progid:DX../imageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+		  /* For IE 5.5 - 7 */
+		filter: progid:DX../imageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+		display:none; 	
+}
+#wait {
+display:none; position:fixed;  text-align:center; font-family:ns; z-index:4005; font-size:14px; top:50px; width:10%; right:42%;
+}
+#AdminDiv{background: #fff;margin-top:13px;}
+body {
+    background-color: #eee;
+    font-family: IRANSans;
+    font-size: 13px;
+    direction: rtl;
+}
+
+.popover-content,
+.popover-title {
+    font-family: IRANSans;
+}
+
+.glyphicon {
+    vertical-align: middle;
+}
+
+.header {
+    background-color: #fff;
+    color: #eee;
+    padding: 8px 6px 6px 6px;
+    font-size: 11px;
+}
+
+.header .today {
+    display: inline-block;
+    padding: 3px 8px 3px 8px;
+    background-color: #37474F;
+    color: #fff;
+    border-radius: 3px;
+    position: absolute;
+    left: 50px;
+    top: 10px;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-primary {
+    background-color: #29B6F6;
+    border: 0;
+}
+
+.navbar-primary .navbar-brand,
+.navbar-primary .navbar-nav>li>a {
+    color: #ffffff;
+    transition: all ease 0.5s;
+}
+
+.navbar-primary .navbar-nav>li>a:hover,
+.navbar-primary .navbar-nav>li>a:focus {
+    background-color: #4FC3F7;
+    transition: all ease 0.5s;
+}
+
+.navbar-primary .navbar-nav>li.dropdown>.dropdown-menu>li>a {
+    padding: 8px 15px 8px 5px;
+}
+
+.panel-primary {
+    border-radius: 0;
+    border: 0;
+    border-bottom: 2px solid #29B6F6;
+}
+
+.panel-primary .panel-heading {
+    background-color: #29B6F6;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 16px;
+    border-right: 10px solid #81D4FA;
+}
+
+.modal .modal-dialog .modal-content {
+    border-radius: 0;
+}
+
+.modal .modal-dialog .modal-content .modal-header {
+    padding: 12px;
+    border-bottom: 2px solid #039BE5;
+    background-color: #29B6F6;
+    color: #fff;
+}
+
+.modal .modal-dialog .modal-content .modal-header .close {
+    color: #fff;
+    opacity: 0.9;
+    margin-top: 3px;
+}
+
+.modal .modal-dialog .modal-content .table-responsive {
+    max-height: 400px;
+}
+
+.btn {
+    border: 0;
+}
+
+.btn,
+.btn:hover {
+    transition: all ease 0.7s;
+}
+
+.btn-success {
+    background-color: rgba(100, 221, 23, 1);
+    border: 0;
+}
+
+.btn-success:hover {
+    background-color: rgba(100, 221, 23, 0.8);
+}
+
+.btn-gray {
+    color: #333;
+    background-color: transparent;
+    border: 1px solid #B2DFDB;
+}
+
+.btn-gray:hover {
+    background-color: #B2DFDB;
+    border: 1px solid #B2DFDB;
+}
+
+.table .arrang .glyphicon {
+    cursor: pointer;
+    vertical-align: middle;
+    font-size: 15px;
+    color: #999;
+    transition: all ease 0.5s;
+}
+
+.table .arrang .glyphicon:hover {
+    color: #333;
+    transition: all ease 0.5s;
+}
+
+.footer {
+    padding: 8px 0 0px 0;
+    background-color: #fff;
+    border-top: 3px solid #546E7A;
+}
+
+fieldset {
+    margin-top: 15px;
+}
+
+fieldset legend {
+    border-bottom: 2px solid #29B6F6;
+    font-size: 13px;
+    border-radius: 0 0 5px 0;
+}
+
+fieldset legend span {
+    display: inline-block;
+    background-color: #29B6F6;
+    width: auto;
+    padding: 3px 8px 3px 8px;
+    border-radius: 3px 3px 3px 0;
+    color: #fff;
+}
+
+.popover {
+    min-width: 300px;
+}
+
+[data-name="md-datetimepicker-popovercontent"] {
+    padding: 5px 6px;
+}
+
+[data-name="md-datetimepicker-popovercontent"] a[data-name="go-today"] {
+    color: #333;
+    width: 100%;
+    display: block;
+    text-decoration: none;
+}
+
+[data-name="md-datetimepicker-title"] {
+    direction: rtl;
+    text-align: center;
+    font-family: Iransans;
+    font-size: 12px;
+}
+
+[data-name="md-datetimepicker-title"][data-isgregorian="true"] {
+    direction: ltr;
+}
+
+[data-name="md-persiandatetimepicker"] {
+    font-family: Iransans;
+}
+
+[data-name="md-persiandatetimepicker"] button {
+    font-size: 12px;
+}
+
+[data-name="md-persiandatetimepicker"] table.table-striped {
+    margin-bottom: 0;
+    direction: rtl;
+}
+
+[data-name="md-persiandatetimepicker"][data-isgregorian="true"] table.table-striped {
+    direction: ltr;
+}
+
+[data-name="md-persiandatetimepicker"] table.table td {
+    text-align: center;
+    padding: 2px;
+    font-size: 12px;
+}
+
+[data-name="md-persiandatetimepicker"] table[data-name="md-persiandatetimepicker-timepicker"].table,
+[data-name="md-persiandatetimepicker"] table[data-name="md-persiandatetimepicker-headertable"].table {
+    width: 100%;
+    margin: 0 auto;
+    direction: ltr;
+}
+
+[data-name="md-persiandatetimepicker"] table[data-name="md-persiandatetimepicker-headertable"] .dropdown-menu[aria-labelledby="dropdownMenuPersianYear"] {
+    height: 200px;
+    overflow: auto;
+}
+
+[data-name="md-persiandatetimepicker"] table[data-name="md-persiandatetimepicker-headertable"] .dropdown-menu li {
+    text-align: center;
+}
+
+[data-name="md-persiandatetimepicker"] table[data-name="md-persiandatetimepicker-timepicker"].table td,
+[data-name="md-persiandatetimepicker"] table[data-name="md-persiandatetimepicker-headertable"].table td {
+    text-align: center;
+    vertical-align: middle;
+    border: 0;
+}
+
+[data-name="md-persiandatetimepicker-titlemonth"],
+[data-name="md-persiandatetimepicker-titleyear"] {
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: none;
+    font-weight: bold;
+}
+
+[aria-labelledby="dropdownMenuPersianmonths"] li>a,
+[aria-labelledby="dropdownMenuPersianyear"] li>a {
+    margin: 0;
+    padding: 0 10px 0 10px;
+    text-align: center;
+}
+
+[aria-labelledby="dropdownMenuPersianmonths"] .divider {
+    margin: 1px;
+    padding: 0;
+}
+
+[data-name="md-persiandatetimepicker"] table.table tr[data-name="md-persiandatetimepicker-weekdaysnames"] td {
+    font-size: 13px;
+    font-weight: bold;
+    font-family: Iransans;
+}
+
+[data-name="disabled-day"] {
+    color: #ccc;
+    font-family: Iransans;
+}
+
+[data-name="day"],
+[data-name="today"] {
+    cursor: pointer;
+    padding: 2px;
+    font-family: Iransans;
+}
+
+[data-name="day"]:not([class^="text"]) {
+    color: #333;
+}
+
+[data-name="day"]:hover {
+    background: #eee;
+}
+
+[data-name="today"]:hover {
+    background: #73acdc;
+}
+
+[data-name="md-persiandatetimepicker-timepicker"] [data-name="clock-hour"],
+[data-name="md-persiandatetimepicker-timepicker"] [data-name="clock-minute"],
+[data-name="md-persiandatetimepicker-timepicker"] [data-name="clock-second"] {
+    font-size: 12px;
+    width: 50px;
+    padding: 2px;
+    direction: ltr;
+    text-align: center;
+    height: auto;
+    display: inline-block;
+}
+
+
+/* by Sina-Soltani66 */
+
+.zIndexCorrected {
+    z-index: 100000;
+}
+
+.form-group .input-group-addon {
+    cursor: pointer;
+}
+
+.table tr th {
+    word-wrap: normal;
+}
+
+.img-thumbnail {
+    max-height: 266px;
+}
+.portlet.box {
+  padding: 0px !important;
+}
+.portlet.box > .portlet-title {
+  border-bottom: 0;
+  padding: 0 10px;
+  margin-bottom: 0;
+  color: #fff;
+}
+.portlet.box > .portlet-title > .caption {
+  padding: 11px 0 9px 0;
+}
+.portlet.box > .portlet-title > .tools > a.remove {
+  background-image: url(../images/portlet-remove-icon-white.png);
+}
+.portlet.box > .portlet-title > .tools > a.config {
+  background-image: url(../images/portlet-config-icon-white.png);
+}
+.portlet.box > .portlet-title > .tools > a.reload {
+  background-image: url(../images/portlet-reload-icon-white.png);
+}
+.portlet.box > .portlet-title > .tools > a.expand {
+  background-image: url(../images/portlet-expand-icon-white.png);
+}
+.portlet.box > .portlet-title > .tools > a.collapse {
+  background-image: url(../images/portlet-collapse-icon-white.png);
+}
+.portlet.box > .portlet-title > .tools > a.fullscreen {
+  color: #fdfdfd;
+}
+.portlet.box > .portlet-title > .actions {
+  padding: 7px 0 5px 0;
+}
+.portlet.box > .portlet-body {
+  background-color: #fff;
+  padding: 20px;
+}
+.portlet.box.portlet-fullscreen > .portlet-body {
+  padding: 20px;
+}
+.portlet.light.bordered > .portlet-title {
+  border-bottom: 1px solid #eee;
+}
+.portlet.light.bg-inverse {
+  background: #F7F7F7;
+}
+.portlet.light > .portlet-title {
+  padding: 0;
+  min-height: 48px;
+}
+.portlet.light > .portlet-title > .caption {
+  color: #666;
+  padding: 10px 0;
+}
+.portlet.light > .portlet-title > .caption > .caption-subject {
+  font-size: 16px;
+}
+.portlet.light > .portlet-title > .caption > i {
+  color: #777;
+  font-size: 15px;
+  font-weight: 300;
+  margin-top: 3px;
+}
+.portlet.light > .portlet-title > .caption.caption-md > .caption-subject {
+  font-size: 15px;
+}
+.portlet.light > .portlet-title > .caption.caption-md > i {
+  font-size: 14px;
+}
+.portlet.light > .portlet-title > .actions {
+  padding: 6px 0 14px 0;
+}
+.portlet.light > .portlet-title > .actions .btn-default {
+  color: #666;
+}
+.portlet.light > .portlet-title > .actions .btn-icon-only {
+  height: 27px;
+  width: 27px;
+}
+.portlet.light > .portlet-title > .actions .dropdown-menu li > a {
+  color: #555;
+}
+.portlet.light > .portlet-title > .inputs {
+  float: left;
+  display: inline-block;
+  padding: 4px 0;
+}
+.portlet.light > .portlet-title > .inputs > .portlet-input .input-icon > i {
+  font-size: 14px;
+  margin-top: 9px;
+}
+.portlet.light > .portlet-title > .inputs > .portlet-input .input-icon > .form-control {
+  height: 30px;
+  padding: 2px 10px 3px 26px;
+  font-size: 13px;
+}
+.portlet.light > .portlet-title > .inputs > .portlet-input > .form-control {
+  height: 30px;
+  padding: 3px 10px;
+  font-size: 13px;
+}
+.portlet.light > .portlet-title > .pagination {
+  padding: 2px 0 13px 0;
+}
+.portlet.light > .portlet-title > .tools {
+  padding: 10px 0 13px 0;
+  margin-top: 2px;
+}
+.portlet.light > .portlet-title > .nav-tabs > li {
+  margin: 0;
+  padding: 0;
+}
+.portlet.light > .portlet-title > .nav-tabs > li > a {
+  margin: 0;
+  padding: 12px 13px 13px 13px;
+  font-size: 13px;
+  color: #666;
+}
+.portlet.light > .portlet-title > .nav-tabs > li.active > a, .portlet.light > .portlet-title > .nav-tabs > li:hover > a {
+  margin: 0;
+  background: none;
+  color: #333;
+}
+.portlet.light.form-fit {
+  padding: 0;
+}
+.portlet.light.form-fit > .portlet-title {
+  padding: 17px 20px 10px 20px;
+  margin-bottom: 0;
+}
+.portlet.light .portlet-body {
+  padding-top: 8px;
+  padding:20px;
+}
+.portlet.light.portlet-fullscreen > .portlet-body {
+  padding: 8px 0;
+  padding:20px;
+}
+.portlet > .portlet-body.blue,
+.portlet.blue {
+  background-color: #4B8DF8;
+  padding:20px;
+}
+
+.portlet.solid.blue > .portlet-title,
+.portlet.solid.blue > .portlet-body {
+  border: 0;
+  color: #FFFFFF;
+}
+.portlet.solid.blue > .portlet-title > .caption > i {
+  color: #FFFFFF;
+}
+.portlet.solid.blue > .portlet-title > .tools > a.remove {
+  background-image: url(../img/portlet-remove-icon-white.png);
+}
+.portlet.solid.blue > .portlet-title > .tools > a.config {
+  background-image: url(../img/portlet-config-icon-white.png);
+}
+.portlet.solid.blue > .portlet-title > .tools > a.reload {
+  background-image: url(../img/portlet-reload-icon-white.png);
+}
+.portlet.solid.blue > .portlet-title > .tools > a.expand {
+  background-image: url(../img/portlet-expand-icon-white.png);
+}
+.portlet.solid.blue > .portlet-title > .tools > a.collapse {
+  background-image: url(../img/portlet-collapse-icon-white.png);
+}
+.portlet.solid.blue > .portlet-title > .tools > a.fullscreen {
+  color: #fdfdfd;
+}
+
+.portlet.box.blue {
+  border: 1px solid #7cacfa;
+  border-top: 0;
+}
+.portlet.box.blue > .portlet-title {
+  background-color: #4B8DF8;
+}
+.portlet.box.blue > .portlet-title > .caption {
+  color: #FFFFFF;
+}
+.portlet.box.blue > .portlet-title > .caption > i {
+  color: #FFFFFF;
+}
+.portlet.box.blue > .portlet-title > .actions .btn-default {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid #b7d1fc;
+  color: #d0e1fd;
+}
+.portlet.box.blue > .portlet-title > .actions .btn-default > i {
+  color: #deeafe;
+}
+.portlet.box.blue > .portlet-title > .actions .btn-default:hover, .portlet.box.blue > .portlet-title > .actions .btn-default:focus, .portlet.box.blue > .portlet-title > .actions .btn-default:active, .portlet.box.blue > .portlet-title > .actions .btn-default.active {
+  border: 1px solid #e8f0fe;
+  color: white;
+}

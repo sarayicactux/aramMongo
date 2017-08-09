@@ -1,0 +1,55 @@
+/*******************************************************************************
+ *              
+ *      Author: Mehran Ranji (http://mehranranji.ir)
+ *  Created on: 1-1-2017
+ *     Project: Aramestan
+ *     Email: Mehran.ranji@gmail.com
+ *******************************************************************************/
+@font-face {
+    font-family: "ns";
+    font-style: normal;
+    font-weight: bold;
+    src: url('../font/nassim-bold.eot?') format('eot'), url('../font/nassim-bold.woff') format('woff'),url("../font/nassim-bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'mitra' ;
+    src: url('../font/BMitra.eot') ;
+    src: url('../font/BMitra.eot?#iefix') format('embedded-opentype'),
+         url('../font/BMitra.woff') format('woff'),
+         url('../font/BMitra.ttf') format('truetype'),
+         url('../font/BMitra.svg#BMitra') format('svg') ;
+    font-weight: normal ;
+    font-style: normal ;
+    unicode-range: U+0600–06FF ;
+}
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 500;
+    src: url(../font/IRANSansWeb_Medium.eot);
+    src: url(../font/IRANSansWeb_Medium.eot?#iefix) format("embedded-opentype"), url(../font/IRANSansWeb_Medium.woff2) format("woff2"), url(../font/IRANSansWeb_Medium.woff) format("woff"), url(../font/IRANSansWeb_Medium.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 300;
+    src: url(../font/IRANSansWeb_Light.eot);
+    src: url(../font/IRANSansWeb_Light.eot?#iefix) format("embedded-opentype"), url(../font/IRANSansWeb_Light.woff2) format("woff2"), url(../font/IRANSansWeb_Light.woff) format("woff"), url(../font/IRANSansWeb_Light.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 200;
+    src: url(../font/IRANSansWeb_UltraLight.eot);
+    src: url(../font/IRANSansWeb_UltraLight.eot?#iefix) format("embedded-opentype"), url(../font/IRANSansWeb_UltraLight.woff2) format("woff2"), url(../font/IRANSansWeb_UltraLight.woff) format("woff"), url(../font/IRANSansWeb_UltraLight.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 400;
+    src: url(../font/IRANSansWeb.eot);
+    src: url(../font/IRANSansWeb.eot?#iefix) format("embedded-opentype"), url(../font/IRANSansWeb.woff2) format("woff2"), url(../font/IRANSansWeb.woff) format("woff"), url(../font/IRANSansWeb.ttf) format("truetype");
+}
