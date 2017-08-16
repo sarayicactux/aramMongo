@@ -55,7 +55,7 @@
 
 </div>
 <div align="center" style="width:100%"><br />
-<button onclick="deleteDec('{{$inf->id }}');" class="btn btn-primary">حذف اطلاعات متوفی</button>
+<button onclick="deleteDec('{{(string)$inf->_id }}');" class="btn btn-primary">حذف اطلاعات متوفی</button>
 </div>
 </div>
 </div>

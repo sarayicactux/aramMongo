@@ -91,26 +91,12 @@ else {
 							onkeypress="return isNumberKey(event)" style="font-family:Tahoma; text-align:left" onblur="
 								var check = checkMelliCode(this.value); 
 								if ( check ){
-										ncode = this.value;
-										$.post('index.php/decedent/checkMelicode', { 
-														n_code     : ncode,
-												   },
-											 function(data){
-												  if ( data.status ){ 
-														 $('#m_ch').html('');
-														 $('#frmCheck').val('1');
-												  }
-												  else {
-												  $('#m_ch').html('کد ملی وارد شده تکراری و نامعتبر است');
-												  $('#frmCheck').val('0');	
-												  }
-												 
-												 }, 'json');
-										
+										$('#m_ch').html('');
+										$('#frmCheck').val('1');	
 								}
 								else {
 										$('#m_ch').html('کد ملی وارد شده صحیح نیست');
-										$('#frmCheck').val('0')		
+										$('#frmCheck').val('0');		
 								}
 										
 								

@@ -42,7 +42,7 @@ else {
 							<option value="2" @if ( $inf->gender == '2' ) selected="selected" @endif >زن</option>
 							</select>
 							<input type="hidden" id="frmCheck" value="1" />
-							<input type="hidden" id="deadIdEd" value="{{ $inf->id  }}" />
+							<input type="hidden" id="deadIdEd" value="{{ (string)$inf->_id  }}" />
 						</div>
 					</div>
 				</div>
@@ -436,7 +436,7 @@ else {
 	<div class="form-actions">
 			<div class="row">
 				<div  align="left">
-					<button onclick="editDead();" class="btn btn-primary">ثبت اطلاعات</button>
+					<button onclick="editDeadMongo();" class="btn btn-primary">ثبت اطلاعات</button>
 				</div>
 			</div>
 		</div>

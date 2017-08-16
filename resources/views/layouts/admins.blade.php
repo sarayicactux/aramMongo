@@ -71,7 +71,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style="color:#FF0000"> {{ session ('admin')['name'].' '.session ('admin')['family'] }} </span>خوش آمدید<span class="caret"></span></a>
             <ul class="dropdown-menu">
 			  <li ><a href="#">تغییر رمز</a></li>
-              <li ><a href="logOut.php" >خروج</a></li>
+              <li ><a href="/logOut" >خروج</a></li>
            
             </ul>
             </li>

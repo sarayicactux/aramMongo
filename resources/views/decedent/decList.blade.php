@@ -1,9 +1,4 @@
-<?php $fn = new App\Http\Controllers\Jdate;
-$renderer = new \BaconQrCode\Renderer\Image\Png();
-$writer = new \BaconQrCode\Writer($renderer);
-$renderer->setHeight(256);
-$renderer->setWidth(256);
- ?>
+<?php $fn = new App\Http\Controllers\Jdate; ?>
 
 <div class="container">
     <div class="panel panel-primary">
@@ -74,14 +69,14 @@ $renderer->setWidth(256);
 				<label class="control-label col-md-4" style="padding:1px">مرتب سازی</label>
 				<div class="col-md-9">
 					<select id="orderBy" class="select2_category form-control input-sm">
-					<option value="id-DESC">جدید ترین ها</option>
-					<option value="id">قدیمی ترین ها</option>
-					<option value="reg_num-DESC">شماره ثبت نزولی</option>
-					<option value="reg_num">شماره ثبت صعودی</option>
-					<option value="d_date-DESC">تاریخ فوت نزولی</option>
-					<option value="d_date">تاریخ فوت صعودی</option>
-					<option value="b_date-DESC">تاریخ تولد نزولی</option>
-					<option value="b_date">تاریخ تولد صعودی</option>
+					<option value="_id@2">جدید ترین ها</option>
+					<option value="_id@1">قدیمی ترین ها</option>
+					<option value="reg_num@2">شماره ثبت نزولی</option>
+					<option value="reg_num@1">شماره ثبت صعودی</option>
+					<option value="d_date@2">تاریخ فوت نزولی</option>
+					<option value="d_date@1">تاریخ فوت صعودی</option>
+					<option value="b_date@2">تاریخ تولد نزولی</option>
+					<option value="b_date@1">تاریخ تولد صعودی</option>
 					</select>
 				</div>
 			</div>
@@ -116,11 +111,12 @@ $renderer->setWidth(256);
 <div class="portlet box blue">
   <div class="portlet-title"> 
 	   <div class="caption">
-		تعداد لیست : {{ $fn->fn(count($decedent))}} مورد
+		تعداد لیست : {{ $fn->fn($listNum)}} مورد
 		</div>
 	</div>	
   	
 <div style="width:100%; height:300px; overflow:auto;background:#FFFFFF;">
+<span style="display:none">{{ $i = 1 }}</span>
 <table align="center"  dir="rtl" class="table  table-striped table-condensed  table-hover">
 <tr align="center">
 <td>ردیف</td>
@@ -141,16 +137,17 @@ $renderer->setWidth(256);
 <td>ویرایش</td>
 <td>حذف</td>
 </tr>
-@for ($i = 0; $i < count($decedent); $i++ )
+
+@foreach ($decedent as $dead)
 <tr align="center">
-<td >{{ $fn->fn($i+1)}}</td>
-<td >@if( $decedent[$i]['gender'] == '1') مرد @else زن @endif</td>
-<td >{{ $decedent[$i]['name'].' '.$decedent[$i]['family']}}</td>
-<td >{{ $fn->fn($decedent[$i]['n_code'])}}</td>
-<td >{{ $fn->echo_date($decedent[$i]['d_date'])}}</td>
-<td >{{ $fn->fn($decedent[$i]['reg_num'])}}</td>
-<td >{{ $fn->echo_date($decedent[$i]['int_date'])}}</td>
-<td style="cursor:pointer"   data-toggle="modal" data-target="#modalLayer" onclick="ctrlAct('{{ $decedent[$i]['id']}}','decedent/attachs')">
+<td >{{ $fn->fn($i)}}</td>
+<td >@if( $dead->gender == '1') مرد @else زن @endif</td>
+<td >{{ $dead->name.' '.$dead->family}}</td>
+<td >{{ $fn->fn($dead->n_code)}}</td>
+<td >{{ $fn->echo_date($dead->d_date)}}</td>
+<td >{{ $fn->fn($dead->reg_num)}}</td>
+<td >{{ $fn->echo_date($dead->int_date)}}</td>
+<td style="cursor:pointer"  >
 <img src="{{ asset('images/paperclip4_black.png')}}" height="18" width="18" />
 </td>
 <td >
@@ -178,21 +175,20 @@ $renderer->setWidth(256);
 <img src="{{ asset('images/eye.png')}}" height="18" width="18" />
 
 </td>
-<td  style="cursor:pointer"  data-toggle="modal" data-target="#modalLayer" onclick="ctrlAct('{{ $decedent[$i]['id']}}','decedent/edit')" >
+<td  style="cursor:pointer"  data-toggle="modal" data-target="#modalLayer" onclick="ctrlAct('{{ (string)$dead->_id}}','decedent/edit')" >
 <img src="{{ asset('images/1edit.png')}}" height="18" width="18" />
 </td>
-<td  style="cursor:pointer"  data-toggle="modal" data-target="#modalLayer" onclick="ctrlAct('{{ $decedent[$i]['id']}}','decedent/delete')" >
+<td  style="cursor:pointer"  data-toggle="modal" data-target="#modalLayer" onclick="ctrlAct('{{ (string)$dead->_id}}','decedent/delete')" >
 <img src="{{ asset('images/delete_icon.png')}}" height="18" width="18" />
-
+<span style="display:none">{{ $i++ }}</span>
 </td>
 </tr>
-@endfor
+
+@endforeach
 </table>
-{{ $writer->writeFile('this is Qrcode', 'qrcode.png') }}
 
 </div>
 </div>
-<img src="{{ asset('qrcode.png')}}" height="256" width="256" />
 </span>
 </div></div></div>
 

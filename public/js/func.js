@@ -591,6 +591,174 @@ function editDead() {
 		
 			}
 }
+function editDeadMongo() {
+			var msg = '';
+			d_date = $('#d_date').val();
+			ddate = d_date.split('/'); 
+			int_date = $('#int_date').val();
+			intdate = int_date.split('/'); 
+			if ( $('#name').val() == '' ){
+				$('#name').focus();
+				msg = 'نام وارد نشده';
+			}
+			else if ( $('#family').val() == '' ){
+				$('#family').focus();
+				msg = 'نام خانوادگی وارد نشده';
+			}
+			else if ( $('#f_name').val() == '' ){
+				$('#f_name').focus();
+				msg = 'نام پدر وارد نشده';
+			}			
+			/*else if ( $('#m_name').val() == '' ){
+				$('#m_name').focus();
+				msg = 'نام مادر وارد نشده';
+			}*/
+			else if ( $('#nationality').val() == '' ){
+				$('#nationality').focus();
+				msg = 'ملیت شغل وارد نشده';
+			}
+			else if ( $('#n_code').val() == '' ){
+				$('#n_code').focus();
+				msg = 'شماره ملی وارد نشده';
+			}/*
+			else if ( $('#frmCheck').val() == '0' ){
+						msg = 'شماره ملی وارد شده، صحیح نبوده یا تکراری است';
+			}
+			else if ( $('#b_num').val() == '' ){
+				$('#b_num').focus();
+				msg = 'شماره شناسنامه وارد نشده';
+			}
+			else if ( $('#b_location').val() == '' ){
+				$('#b_location').focus();
+				msg = 'محل صدور وارد نشده';
+			}*/
+			else if ( $('#b_date').val() == '' ){
+				$('#b_date').focus();
+				msg = 'تاریخ تولد وارد نشده';
+			}
+			/*else if ( $('#age').val() == '' ){
+				$('#age').focus();
+				msg = 'سن وارد نشده';
+			}
+			else if ( $('#tel').val() == '' ){
+				$('#tel').focus();
+				msg = 'شماره تماس وارد نشده';
+			}
+			else if ( $('#tel').val() < 02199999999 ){
+				$('#tel').focus();
+				msg = 'شماره تماس وارد شده صحیح نیست';
+			}
+			/*else if ( $('#city').val() == '' ){
+				$('#city').focus();
+				msg = 'شهر محل سکونت وارد نشده';
+			}
+			else if ( $('#zipcode').val() == '' ){
+				$('#zipcode').focus();
+				msg = 'کدپستی وارد نشده';
+			}*/
+			else if ( $('#d_date').val() == '' ){
+				$('#d_date').focus();
+				msg = 'تاریخ فوت وارد نشده';
+			}
+			else if ( $('#int_date').val() == '' ){
+				$('#int_date').focus();
+				msg = 'تاریخ ثبت وارد نشده';
+			}
+			else if ( intdate < ddate ){
+				$('#int_date').focus();
+				msg = 'تاریخ ثبت و تاریخ فوت، صحیح نیست';
+			}
+			/*else if ( $('#d_reason').val() == '' ){
+				$('#d_reason').focus();
+				msg = 'علت فوت وارد نشده';
+			}*/
+			else if ( $('#fridge_num').val() == '' ){
+				msg = 'شماره سردخانه وارد نشده';
+			}
+			else if ( $('#reg_num').val() == '' ){
+				$('#reg_num').focus();
+				msg = 'شماره ثبت دفتری وارد نشده';
+			}
+			else if ( $('#regOk').val() == '0' ){
+				$('#reg_num').focus();
+				msg = 'شماره ثبت دفتری وارد شده، تکراری و نامعتبر است';
+			}
+			/*else if ( $('#regCheck').val() == '0' ){
+						msg = 'شماره سردخانه وارد شده تکراری و نامعتبر است';
+			}*/
+			
+			if ( msg != '' ){
+					$('#err_msg').html(msg);
+					$('#bg').fadeIn(100,function(){
+												$('#alerts').fadeIn(200); 
+												 });
+					
+			}
+			else {
+				 
+			$('#wait').fadeIn(100);
+		      $.post("decedent/decEditMongo", { 
+					gender       : $('#gender_edit').val(),
+					name         : $('#name').val(),
+			  		family       : $('#family').val(),
+					f_name       : $('#f_name').val(),
+					m_name       : $('#m_name').val(),
+					nationality  : $('#nationality').val(),
+					n_code       : $('#n_code').val(),
+					b_num        : $('#b_num').val(),
+					b_location   : $('#b_location').val(),
+					sh_serial    : $('#sh_serial').val(),
+					sh_series    : $('#sh_series').val(),
+					b_date       : $('#b_date').val(),
+					age          : $('#age').val(),
+					job          : $('#job').val(),
+					tel          : $('#tel').val(),
+					mobile       : $('#mobile').val(),
+					addr         : $('#addr').val(),
+					zipcode      : $('#zipcode').val(),
+					d_date       : $('#d_date').val(),
+					d_date_status: $('#d_date_status').val(),
+					int_date     : $('#int_date').val(),
+					d_place      : $('#d_place').val(),
+					d_reason     : $('#d_reason').val(),
+					disease      : $('#disease').val(),
+					hos_dc       : $('#hos_dc').val(),
+					fridge_num   : $('#fridge_num').val(),
+					burial       : $('#burial').val(),
+					burial_p     : $('#burial_p').val(),
+					driver       : $('#driver').val(),
+					add_txt      : $('#add_txt').val(),
+					reg_num      : $('#reg_num').val(),
+					discription  : $('#discription').val(),
+					id           : $('#deadIdEd').val(),
+					_token       : $('#_token').val(),
+					
+									
+					
+			   },
+		 function(data){  
+		 
+			
+			$('#err_msg').html('اطلاعات متوفی با موفقیت به روز رسانی شد');
+			
+					$('#bg').fadeIn(100,function(){
+												$('#alerts').fadeIn(200); 
+												 });
+						 
+		 
+			  $('#wait').fadeOut(100);
+			   $("body").removeClass("modal-open");
+			 $('.modal-backdrop').fadeOut(100);
+			  postMenus('decedent/decList');
+		
+		
+		 });
+											
+									
+	  
+		
+			}
+}
 function deleteDec(id){
 		
 				 

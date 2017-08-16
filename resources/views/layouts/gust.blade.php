@@ -48,10 +48,10 @@
         </div>
     </div>
 	<div id="bg"></div>
-	<div id="wait" align="center" >
+	<div id="wait" align="center" style="display:none" >
 	<span style="background:#FFFF99; padding:3px">لطفا کمی صبر کنید</span>
 	</div>
-	<div id="alerts" align="center">
+	<div id="alerts" align="center" style="display:none">
 	<br />
 	<span class="alerts" id="err_msg" ></span><br />
 <div ><input type="button" class="button" value="بستن"  onclick="$('#alerts').fadeOut(100,function(){
